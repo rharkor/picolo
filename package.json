@@ -1,0 +1,31 @@
+{
+  "name": "piccolo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Self-hosted party game platform — pass-the-phone + multi-device rooms, EN/FR",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "predev": "npm run build -w @piccolo/shared",
+    "dev": "concurrently -n shared,server,web -c gray,magenta,cyan \"npm:dev:shared\" \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:shared": "npm run dev -w @piccolo/shared",
+    "dev:server": "npm run dev -w @piccolo/server",
+    "dev:web": "npm run dev -w @piccolo/web",
+    "build": "npm run build -w @piccolo/shared && npm run build -w @piccolo/server && npm run build -w @piccolo/web",
+    "start": "node apps/server/dist/index.js",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run typecheck",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.9.2"
+  }
+}

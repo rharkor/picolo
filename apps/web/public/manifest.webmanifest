@@ -1,0 +1,13 @@
+{
+  "name": "Piccolo — Party Games",
+  "short_name": "Piccolo",
+  "description": "Self-hosted party games for you and your friends.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08070d",
+  "theme_color": "#08070d",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

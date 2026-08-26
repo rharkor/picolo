@@ -1,0 +1,29 @@
+services:
+  piccolo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: piccolo:latest
+    container_name: piccolo
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8080}:8080"
+    environment:
+      PORT: 8080
+      HOST: 0.0.0.0
+      NODE_ENV: production
+      # The address your friends will open on their phones. Set this to your
+      # LAN IP or domain, otherwise the QR code points at localhost.
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8080}
+      ROOM_MAX_PLAYERS: ${ROOM_MAX_PLAYERS:-16}
+      ROOM_IDLE_TIMEOUT_MINUTES: ${ROOM_IDLE_TIMEOUT_MINUTES:-90}
+      ALLOW_ADULT_CONTENT: ${ALLOW_ADULT_CONTENT:-true}
+      INSTANCE_PASSWORD: ${INSTANCE_PASSWORD:-}
+      # Unlocks /admin, the page that lists every card, question and answer.
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/api/health"]
+      interval: 30s
+      timeout: 4s
+      retries: 3
+      start_period: 10s
