@@ -79,6 +79,15 @@ function ModeCard({
   );
 }
 
+/**
+ * Room games installed on this build. The mode card stays disabled on an
+ * instance that has none, rather than sending people to a lobby with nothing to
+ * start.
+ */
+const roomGames = GAME_CATALOGUE.filter(
+  (game) => game.modes.includes('room') && game.status === 'ready',
+).length;
+
 export function Home() {
   const { t } = useI18n();
   const players = useParty((s) => s.players);
@@ -128,7 +137,7 @@ export function Home() {
           desc={t('home.roomDesc')}
           delay={0.26}
           accent="from-amber/40 to-orange/10"
-          disabled
+          disabled={roomGames === 0}
           disabledLabel={t('home.roomUnavailable')}
         />
       </div>

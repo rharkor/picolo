@@ -1,6 +1,7 @@
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import { env } from './env.js';
+import { ROOM_CONTENT } from './games/content.js';
 
 /**
  * Password gate for the /admin content review page.
@@ -88,6 +89,19 @@ export function registerAdminRoutes(app: FastifyInstance): void {
     if (!env.adminPassword) return reply.code(503).send({ error: 'admin-disabled' });
     if (!isValidSession(bearer(req), now)) return reply.code(401).send({ error: 'unauthorized' });
     return { ok: true };
+  });
+
+  /**
+   * Room-game decks. Pass-the-phone decks ship in the browser bundle and are
+   * read straight from there; multi-device content only exists on the server,
+   * so the review page asks for it.
+   */
+  app.get('/api/admin/content', async (req, reply) => {
+    const now = Date.now();
+    prune(now);
+    if (!env.adminPassword) return reply.code(503).send({ error: 'admin-disabled' });
+    if (!isValidSession(bearer(req), now)) return reply.code(401).send({ error: 'unauthorized' });
+    return { content: ROOM_CONTENT };
   });
 
   app.post('/api/admin/logout', async (req) => {

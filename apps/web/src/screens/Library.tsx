@@ -88,7 +88,11 @@ export function Library() {
         back={mode !== null || category !== null}
         onBack={() => navigate('/')}
         title={t('library.title')}
-        subtitle={t('library.subtitle', { ready: readyCount, soon: soonCount })}
+        subtitle={
+          soonCount > 0
+            ? t('library.subtitle', { ready: readyCount, soon: soonCount })
+            : t('library.subtitleAll', { ready: readyCount })
+        }
       />
 
       <input

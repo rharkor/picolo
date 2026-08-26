@@ -9,6 +9,7 @@ import { TopBar } from '@/components/TopBar';
 import { useI18n } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { haptic } from '@/lib/haptics';
+import { RoomStage } from '@/games/room/Stage';
 import { useRoom, useSelfPlayer } from '@/net/room';
 import { AVATARS } from '@/store/party';
 import { useSettings } from '@/store/settings';
@@ -17,7 +18,8 @@ export function JoinRoom() {
   const { code: codeParam } = useParams();
   const { t, tRaw } = useI18n();
   const locale = useSettings((s) => s.locale);
-  const { status, state, error, join, resume, leave, clearError } = useRoom();
+  const { status, state, error, privateState, lastEvent, join, resume, leave, action, clearError } =
+    useRoom();
   const self = useSelfPlayer();
 
   const [code, setCode] = useState(normalizeRoomCode(codeParam ?? ''));
@@ -51,6 +53,19 @@ export function JoinRoom() {
           </p>
         )}
 
+        {state.phase !== 'lobby' ? (
+          <RoomStage
+            role="phone"
+            state={state}
+            self={self}
+            privateState={privateState}
+            event={lastEvent}
+            canDrive={self?.isHost ?? false}
+            action={action}
+            onEnd={() => undefined}
+          />
+        ) : (
+          <>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -80,6 +95,8 @@ export function JoinRoom() {
             </li>
           ))}
         </ul>
+          </>
+        )}
       </Screen>
     );
   }

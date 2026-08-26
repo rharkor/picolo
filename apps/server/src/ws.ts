@@ -12,6 +12,7 @@ import {
   type ServerMessage,
 } from '@piccolo/shared';
 import { env } from './env.js';
+import { HOST_ACTOR } from './games/registry.js';
 import { rooms, type Connection, type Room } from './rooms.js';
 
 const HEARTBEAT_MS = 30_000;
@@ -317,9 +318,13 @@ function handle(conn: Wire, msg: ClientMessage): void {
 
     case 'game:action': {
       const room = currentRoom(conn);
-      if (!room || !conn.playerId) return;
+      if (!room) return;
       if (typeof msg.action !== 'string') return;
-      room.handleAction(conn.playerId, msg.action, msg.payload);
+      // A host screen with no seat still drives the game: reveals, next round,
+      // skipping a stuck player. Games decide what HOST_ACTOR is allowed to do.
+      const actor = conn.playerId ?? (conn.role === 'host' ? HOST_ACTOR : null);
+      if (!actor) return;
+      room.handleAction(actor, msg.action, msg.payload);
       return;
     }
 

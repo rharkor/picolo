@@ -6,6 +6,8 @@ import Fastify from 'fastify';
 import { GAME_CATALOGUE, LOCALES, PROTOCOL_VERSION, isValidRoomCode } from '@piccolo/shared';
 import { registerAdminRoutes } from './admin.js';
 import { env } from './env.js';
+// Side-effect import: registers every multi-device game.
+import './games/index.js';
 import { rooms } from './rooms.js';
 import { attachWebSocketServer } from './ws.js';
 

@@ -11,6 +11,7 @@ import { useI18n } from '@/i18n';
 import { fetchConfig, joinUrl } from '@/lib/api';
 import { cn } from '@/lib/cn';
 import { haptic } from '@/lib/haptics';
+import { RoomStage } from '@/games/room/Stage';
 import { useRoom, useSelfPlayer } from '@/net/room';
 import { AVATARS } from '@/store/party';
 import { useSettings } from '@/store/settings';
@@ -22,8 +23,21 @@ export function HostRoom() {
   const [params] = useSearchParams();
   const preselected = params.get('game');
 
-  const { status, state, error, host, resume, send, leave, takeSeat, leaveSeat, clearError } =
-    useRoom();
+  const {
+    status,
+    state,
+    error,
+    privateState,
+    lastEvent,
+    host,
+    resume,
+    send,
+    action,
+    leave,
+    takeSeat,
+    leaveSeat,
+    clearError,
+  } = useRoom();
   const seat = useSelfPlayer();
   const [publicUrl, setPublicUrl] = useState('');
   const [seatName, setSeatName] = useState('');
@@ -91,6 +105,18 @@ export function HostRoom() {
         </p>
       )}
 
+      {state.phase !== 'lobby' ? (
+        <RoomStage
+          role="host"
+          state={state}
+          self={seat}
+          privateState={privateState}
+          event={lastEvent}
+          canDrive
+          action={action}
+          onEnd={() => send({ t: 'room:end' })}
+        />
+      ) : (
       <div className="grid gap-4 md:grid-cols-[auto_1fr]">
         <div className="glass ring-glow flex flex-col items-center gap-4 rounded-card p-6">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -233,11 +259,7 @@ export function HostRoom() {
               size="lg"
               full
               glow
-              disabled={
-                !selected ||
-                state.players.length < (selected?.minPlayers ?? 99) ||
-                state.phase === 'playing'
-              }
+              disabled={!selected || state.players.length < (selected?.minPlayers ?? 99)}
               onClick={() => send({ t: 'room:start' })}
             >
               {t('room.startGame')}
@@ -248,6 +270,7 @@ export function HostRoom() {
           </section>
         </div>
       </div>
+      )}
     </Screen>
   );
 }
