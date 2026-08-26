@@ -74,6 +74,26 @@ export async function adminSession(token: string): Promise<boolean> {
   }
 }
 
+/**
+ * Room-game decks, which only exist on the server: multi-device games localise
+ * their cards server-side and broadcast the result, so the browser bundle never
+ * carries them.
+ */
+export async function adminRoomContent(
+  token: string,
+): Promise<Record<string, unknown[]> | null> {
+  try {
+    const res = await fetch('/api/admin/content', {
+      headers: { authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) return null;
+    const body = (await res.json()) as { content?: Record<string, unknown[]> };
+    return body.content ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function adminLogout(token: string): Promise<void> {
   try {
     await fetch('/api/admin/logout', {

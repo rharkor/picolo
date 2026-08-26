@@ -7,7 +7,13 @@ import { TopBar } from '@/components/TopBar';
 import { GAME_CONTENT, type ContentRow, type ContentSection } from '@/games/content';
 import { hasLocalGame } from '@/games/registry';
 import { useI18n } from '@/i18n';
-import { adminLogin, adminLogout, adminSession, type AdminError } from '@/lib/api';
+import {
+  adminLogin,
+  adminLogout,
+  adminRoomContent,
+  adminSession,
+  type AdminError,
+} from '@/lib/api';
 import { cn } from '@/lib/cn';
 
 /** Per-tab, so closing the tab locks the page again. */
@@ -34,11 +40,6 @@ type Gate = 'checking' | 'locked' | 'open';
 type LangView = 'both' | 'en' | 'fr';
 type AdultView = 'all' | 'only' | 'hide';
 
-/** Reviewable games first — the rest are catalogue entries with nothing to read. */
-const ORDERED: GameMeta[] = [
-  ...GAME_CATALOGUE.filter((g) => g.id in GAME_CONTENT),
-  ...GAME_CATALOGUE.filter((g) => !(g.id in GAME_CONTENT)),
-];
 
 export function Admin() {
   const { t, tRaw, loc } = useI18n();
@@ -54,6 +55,22 @@ export function Admin() {
   const [query, setQuery] = useState('');
   const [lang, setLang] = useState<LangView>('both');
   const [adultView, setAdultView] = useState<AdultView>('all');
+  /** Multi-device decks, fetched from the server rather than read from a bundle. */
+  const [roomContent, setRoomContent] = useState<Record<string, ContentSection[]>>({});
+
+  const hasAny = useCallback(
+    (id: string) => id in GAME_CONTENT || id in roomContent,
+    [roomContent],
+  );
+
+  /** Reviewable games first — the rest are catalogue entries with nothing to read. */
+  const ordered = useMemo<GameMeta[]>(
+    () => [
+      ...GAME_CATALOGUE.filter((g) => hasAny(g.id)),
+      ...GAME_CATALOGUE.filter((g) => !hasAny(g.id)),
+    ],
+    [hasAny],
+  );
 
   // Reuse a token from an earlier unlock in this tab.
   useEffect(() => {
@@ -95,18 +112,38 @@ export function Admin() {
     setGate('locked');
   }, []);
 
-  const loadContent = useCallback(async (id: string) => {
-    const loader = GAME_CONTENT[id];
-    if (!loader) return;
-    setLoading((prev) => ({ ...prev, [id]: true }));
-    const sections = await loader();
-    setCache((prev) => ({ ...prev, [id]: sections }));
-    setLoading((prev) => {
-      const next = { ...prev };
-      delete next[id];
-      return next;
+  // Pull the room decks in as soon as the page is unlocked: they are a single
+  // small response, and without them half the catalogue looks empty.
+  useEffect(() => {
+    if (gate !== 'open') return;
+    const token = readToken();
+    if (!token) return;
+    let cancelled = false;
+    void adminRoomContent(token).then((content) => {
+      if (cancelled || !content) return;
+      setRoomContent(content as Record<string, ContentSection[]>);
     });
-  }, []);
+    return () => {
+      cancelled = true;
+    };
+  }, [gate]);
+
+  const loadContent = useCallback(
+    async (id: string) => {
+      const loader = GAME_CONTENT[id];
+      const fromServer = roomContent[id] ?? [];
+      if (!loader && fromServer.length === 0) return;
+      setLoading((prev) => ({ ...prev, [id]: true }));
+      const local = loader ? await loader() : [];
+      setCache((prev) => ({ ...prev, [id]: [...local, ...fromServer] }));
+      setLoading((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+    },
+    [roomContent],
+  );
 
   const toggle = useCallback(
     (id: string) => {
@@ -118,10 +155,10 @@ export function Admin() {
   );
 
   const expandAll = useCallback(() => {
-    const ids = Object.keys(GAME_CONTENT);
+    const ids = [...new Set([...Object.keys(GAME_CONTENT), ...Object.keys(roomContent)])];
     setOpen(Object.fromEntries(ids.map((id) => [id, true])));
     for (const id of ids) if (!cache[id] && !loading[id]) void loadContent(id);
-  }, [cache, loadContent, loading]);
+  }, [cache, loadContent, loading, roomContent]);
 
   const keep = useCallback(
     (row: ContentRow) => {
@@ -206,7 +243,7 @@ export function Admin() {
         title={t('admin.title')}
         subtitle={t('admin.subtitle', {
           games: GAME_CATALOGUE.length,
-          decks: Object.keys(GAME_CONTENT).length,
+          decks: new Set([...Object.keys(GAME_CONTENT), ...Object.keys(roomContent)]).size,
         })}
         right={
           <Button variant="ghost" size="sm" onClick={lock}>
@@ -261,17 +298,19 @@ export function Admin() {
             lines: totals.rows,
             adult: totals.adult,
           })}
-          {query.trim() && loadedCount < Object.keys(GAME_CONTENT).length && (
+          {query.trim() &&
+            loadedCount <
+              new Set([...Object.keys(GAME_CONTENT), ...Object.keys(roomContent)]).size && (
             <span className="text-amber"> · {t('admin.searchHint')}</span>
           )}
         </p>
       </div>
 
       <div className="mt-5 flex flex-col gap-2">
-        {ORDERED.map((game) => {
+        {ordered.map((game) => {
           const sections = cache[game.id];
           const isOpen = open[game.id] ?? false;
-          const reviewable = game.id in GAME_CONTENT;
+          const reviewable = hasAny(game.id);
           const filtered = sections
             ?.map((section) => ({ ...section, rows: section.rows.filter(keep) }))
             .filter((section) => section.rows.length > 0);

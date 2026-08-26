@@ -1,0 +1,78 @@
+import type { LocalizedText } from '@piccolo/shared';
+import type { RoomCard } from '../kit.js';
+
+export interface DrawCard extends RoomCard {
+  word: LocalizedText;
+}
+
+/**
+ * Drawable in ninety seconds by somebody with no talent. Abstract nouns are out
+ * — everything here has a shape.
+ */
+export const DRAW_WORDS: DrawCard[] = [
+  { id: 'd1', adult: false, intensity: 'chill', word: { en: 'Lighthouse', fr: 'Phare' } },
+  { id: 'd2', adult: false, intensity: 'chill', word: { en: 'Octopus', fr: 'Pieuvre' } },
+  { id: 'd3', adult: false, intensity: 'chill', word: { en: 'Hot air balloon', fr: 'Montgolfière' } },
+  { id: 'd4', adult: false, intensity: 'chill', word: { en: 'Toaster', fr: 'Grille-pain' } },
+  { id: 'd5', adult: false, intensity: 'chill', word: { en: 'Windmill', fr: 'Moulin à vent' } },
+  { id: 'd6', adult: false, intensity: 'chill', word: { en: 'Skateboard', fr: 'Skateboard' } },
+  { id: 'd7', adult: false, intensity: 'chill', word: { en: 'Pineapple', fr: 'Ananas' } },
+  { id: 'd8', adult: false, intensity: 'chill', word: { en: 'Umbrella', fr: 'Parapluie' } },
+  { id: 'd9', adult: false, intensity: 'chill', word: { en: 'Snowman', fr: 'Bonhomme de neige' } },
+  { id: 'd10', adult: false, intensity: 'chill', word: { en: 'Guitar', fr: 'Guitare' } },
+  { id: 'd11', adult: false, intensity: 'chill', word: { en: 'Volcano', fr: 'Volcan' } },
+  { id: 'd12', adult: false, intensity: 'chill', word: { en: 'Robot', fr: 'Robot' } },
+  { id: 'd13', adult: false, intensity: 'chill', word: { en: 'Igloo', fr: 'Igloo' } },
+  { id: 'd14', adult: false, intensity: 'chill', word: { en: 'Submarine', fr: 'Sous-marin' } },
+  { id: 'd15', adult: false, intensity: 'chill', word: { en: 'Cactus', fr: 'Cactus' } },
+  { id: 'd16', adult: false, intensity: 'chill', word: { en: 'Treasure chest', fr: 'Coffre au trésor' } },
+  { id: 'd17', adult: false, intensity: 'chill', word: { en: 'Rollercoaster', fr: 'Montagnes russes' } },
+  { id: 'd18', adult: false, intensity: 'chill', word: { en: 'Jellyfish', fr: 'Méduse' } },
+  { id: 'd19', adult: false, intensity: 'chill', word: { en: 'Fire extinguisher', fr: 'Extincteur' } },
+  { id: 'd20', adult: false, intensity: 'chill', word: { en: 'Wheelbarrow', fr: 'Brouette' } },
+  { id: 'd21', adult: false, intensity: 'chill', word: { en: 'Hedgehog', fr: 'Hérisson' } },
+  { id: 'd22', adult: false, intensity: 'chill', word: { en: 'Traffic light', fr: 'Feu de circulation' } },
+  { id: 'd23', adult: false, intensity: 'chill', word: { en: 'Vending machine', fr: 'Distributeur automatique' } },
+  { id: 'd24', adult: false, intensity: 'chill', word: { en: 'Kangaroo', fr: 'Kangourou' } },
+  { id: 'd25', adult: false, intensity: 'chill', word: { en: 'Chandelier', fr: 'Lustre' } },
+  { id: 'd26', adult: false, intensity: 'chill', word: { en: 'Pirate ship', fr: 'Bateau pirate' } },
+  { id: 'd27', adult: false, intensity: 'chill', word: { en: 'Waterfall', fr: 'Cascade' } },
+  { id: 'd28', adult: false, intensity: 'chill', word: { en: 'Tractor', fr: 'Tracteur' } },
+  { id: 'd29', adult: false, intensity: 'chill', word: { en: 'Bagpipes', fr: 'Cornemuse' } },
+  { id: 'd30', adult: false, intensity: 'chill', word: { en: 'Telescope', fr: 'Télescope' } },
+  { id: 'd31', adult: false, intensity: 'party', word: { en: 'Karaoke night', fr: 'Soirée karaoké' } },
+  { id: 'd32', adult: false, intensity: 'party', word: { en: 'Hangover', fr: 'Gueule de bois' } },
+  { id: 'd33', adult: false, intensity: 'party', word: { en: 'Bouncer', fr: 'Videur' } },
+  { id: 'd34', adult: false, intensity: 'party', word: { en: 'Cocktail shaker', fr: 'Shaker' } },
+  { id: 'd35', adult: false, intensity: 'party', word: { en: 'Dance floor', fr: 'Piste de danse' } },
+  { id: 'd36', adult: false, intensity: 'party', word: { en: 'Kebab shop', fr: 'Kebab' } },
+  { id: 'd37', adult: false, intensity: 'party', word: { en: 'Selfie stick', fr: 'Perche à selfie' } },
+  { id: 'd38', adult: false, intensity: 'party', word: { en: 'Piñata', fr: 'Piñata' } },
+  { id: 'd39', adult: false, intensity: 'party', word: { en: 'Disco ball', fr: 'Boule à facettes' } },
+  { id: 'd40', adult: false, intensity: 'party', word: { en: 'Traffic cone', fr: 'Cône de chantier' } },
+  { id: 'd41', adult: false, intensity: 'party', word: { en: 'Beer pong', fr: 'Beer pong' } },
+  { id: 'd42', adult: false, intensity: 'party', word: { en: 'Taxi at dawn', fr: 'Taxi à l’aube' } },
+  { id: 'd43', adult: false, intensity: 'party', word: { en: 'Sunburn', fr: 'Coup de soleil' } },
+  { id: 'd44', adult: false, intensity: 'party', word: { en: 'Photobomb', fr: 'Photobomb' } },
+  { id: 'd45', adult: false, intensity: 'chill', word: { en: 'Wedding cake', fr: 'Gâteau de mariage' } },
+  { id: 'd46', adult: false, intensity: 'chill', word: { en: 'Ferris wheel', fr: 'Grande roue' } },
+  { id: 'd47', adult: false, intensity: 'chill', word: { en: 'Sandcastle', fr: 'Château de sable' } },
+  { id: 'd48', adult: false, intensity: 'chill', word: { en: 'Trampoline', fr: 'Trampoline' } },
+  { id: 'd49', adult: false, intensity: 'chill', word: { en: 'Fireworks', fr: 'Feu d’artifice' } },
+  { id: 'd50', adult: false, intensity: 'chill', word: { en: 'Scarecrow', fr: 'Épouvantail' } },
+  { id: 'd51', adult: false, intensity: 'chill', word: { en: 'Hammock', fr: 'Hamac' } },
+  { id: 'd52', adult: false, intensity: 'chill', word: { en: 'Popcorn', fr: 'Pop-corn' } },
+  { id: 'd53', adult: false, intensity: 'chill', word: { en: 'Anchor', fr: 'Ancre' } },
+  { id: 'd54', adult: false, intensity: 'chill', word: { en: 'Mermaid', fr: 'Sirène' } },
+  { id: 'd55', adult: false, intensity: 'chill', word: { en: 'Skyscraper', fr: 'Gratte-ciel' } },
+  { id: 'd56', adult: false, intensity: 'chill', word: { en: 'Ostrich', fr: 'Autruche' } },
+  { id: 'd57', adult: false, intensity: 'chill', word: { en: 'Fishing rod', fr: 'Canne à pêche' } },
+  { id: 'd58', adult: false, intensity: 'chill', word: { en: 'Sushi', fr: 'Sushi' } },
+  { id: 'd59', adult: false, intensity: 'chill', word: { en: 'Windsurfer', fr: 'Planche à voile' } },
+  { id: 'd60', adult: false, intensity: 'chill', word: { en: 'Piano', fr: 'Piano' } },
+
+  { id: 'ds1', adult: true, intensity: 'wild', word: { en: 'Handcuffs', fr: 'Menottes' } },
+  { id: 'ds2', adult: true, intensity: 'wild', word: { en: 'Lipstick mark', fr: 'Trace de rouge à lèvres' } },
+  { id: 'ds3', adult: true, intensity: 'wild', word: { en: 'Hotel key card', fr: 'Carte de chambre d’hôtel' } },
+  { id: 'ds4', adult: true, intensity: 'wild', word: { en: 'Bubble bath', fr: 'Bain moussant' } },
+];

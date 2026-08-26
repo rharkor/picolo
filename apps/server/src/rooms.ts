@@ -47,6 +47,9 @@ export class Room {
   private readonly players = new Map<string, PlayerRecord>();
   private readonly connections = new Set<Connection>();
   private game: RoomGame | null = null;
+  /** Server-only state owned by the running game. Never broadcast. */
+  private gameState: unknown = undefined;
+  private readonly timers = new Set<NodeJS.Timeout>();
 
   constructor(code: string) {
     this.code = code;
@@ -172,14 +175,34 @@ export class Room {
 
   // ------------------------------------------------------------------- game
 
+  private clearTimers(): void {
+    for (const handle of this.timers) clearTimeout(handle);
+    this.timers.clear();
+  }
+
   private context(): RoomGameContext {
     return {
       players: this.playerList,
       locale: this.locale,
+      adultUnlocked: this.adultUnlocked,
       setPublic: (state) => {
         this.publicState = state;
         this.sync();
       },
+      getState: <T>() => this.gameState as T | undefined,
+      setState: (state) => {
+        this.gameState = state;
+      },
+      schedule: (ms, fn) => {
+        const handle = setTimeout(() => {
+          this.timers.delete(handle);
+          // A game that has since been stopped must not wake up and mutate a
+          // room that has moved on.
+          if (this.game) fn(this.context());
+        }, ms);
+        this.timers.add(handle);
+      },
+      cancelTimers: () => this.clearTimers(),
       sendPrivate: (playerId, payload) => this.sendTo(playerId, { t: 'game:private', payload }),
       emit: (event, payload) => this.broadcast({ t: 'game:event', event, payload }),
       addScore: (playerId, delta) => {
@@ -202,6 +225,7 @@ export class Room {
     this.gameId = gameId;
     this.phase = 'playing';
     this.publicState = null;
+    this.gameState = undefined;
     game.start(this.context());
     this.sync();
     return null;
@@ -219,9 +243,14 @@ export class Room {
 
   stopGame(): void {
     if (this.game) {
-      this.game.stop?.(this.context());
+      const game = this.game;
+      // Cleared before stop() so a game cannot schedule itself back to life.
+      this.clearTimers();
       this.game = null;
+      game.stop?.(this.context());
     }
+    this.clearTimers();
+    this.gameState = undefined;
   }
 
   end(): void {

@@ -61,7 +61,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 90],
     emoji: '🍸',
     accent: 'violet',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'never-have-i-ever',
@@ -97,7 +97,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '👉',
     accent: 'amber',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'truth-or-dare',
@@ -133,7 +133,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '⚖️',
     accent: 'cyan',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'paranoia',
@@ -151,7 +151,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '🤫',
     accent: 'indigo',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'sip-or-spill',
@@ -169,7 +169,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 40],
     emoji: '🫗',
     accent: 'orange',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'two-truths-a-lie',
@@ -187,7 +187,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 30],
     emoji: '🤥',
     accent: 'lime',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'la-tabuses',
@@ -210,6 +210,25 @@ export const GAME_CATALOGUE: GameMeta[] = [
 
   // ---------------------------------------------------------------- party ---
   {
+    id: 'mr-white',
+    title: { en: 'Mr White', fr: 'Mr White' },
+    tagline: {
+      en: 'Everyone gets the same word. One gets a near miss, one gets nothing at all.',
+      fr: 'Tout le monde reçoit le même mot. L’un en reçoit un presque pareil, l’autre rien du tout.',
+    },
+    modes: ['pass'],
+    category: 'social',
+    intensity: 'party',
+    adult: false,
+    minPlayers: 4,
+    maxPlayers: 16,
+    minutes: [10, 30],
+    emoji: '🕵️',
+    accent: 'indigo',
+    status: 'ready',
+  },
+
+  {
     id: 'shot-roulette',
     title: { en: 'Shot Roulette', fr: 'Roulette à shots' },
     tagline: {
@@ -225,7 +244,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 20],
     emoji: '🎯',
     accent: 'rose',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'kings-cup',
@@ -243,7 +262,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [20, 60],
     emoji: '👑',
     accent: 'amber',
-    status: 'soon',
+    status: 'ready',
     props: { en: 'One big shared glass in the middle', fr: 'Un grand verre commun au centre' },
   },
   {
@@ -262,7 +281,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 25],
     emoji: '🚌',
     accent: 'orange',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'categories',
@@ -280,7 +299,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '🗂️',
     accent: 'cyan',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'waterfall',
@@ -298,7 +317,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [2, 5],
     emoji: '🌊',
     accent: 'cyan',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'bomb-party',
@@ -316,7 +335,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 20],
     emoji: '💣',
     accent: 'rose',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'cheers-governor',
@@ -334,7 +353,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '🎩',
     accent: 'violet',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'fingers',
@@ -352,7 +371,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 15],
     emoji: '🖐️',
     accent: 'lime',
-    status: 'soon',
+    status: 'ready',
     props: { en: 'One shared glass', fr: 'Un verre commun' },
   },
   {
@@ -371,7 +390,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 15],
     emoji: '🐍',
     accent: 'lime',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'party-bingo',
@@ -389,7 +408,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [30, 120],
     emoji: '🎫',
     accent: 'indigo',
-    status: 'soon',
+    status: 'ready',
   },
 
   // ---------------------------------------------------------------- spicy ---
@@ -409,7 +428,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '🔥',
     accent: 'rose',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'truth-or-dare-spicy',
@@ -427,7 +446,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 60],
     emoji: '🌶️',
     accent: 'rose',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'confessions',
@@ -445,7 +464,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 40],
     emoji: '🕯️',
     accent: 'indigo',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'dirty-charades',
@@ -463,7 +482,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 30],
     emoji: '🙊',
     accent: 'fuchsia',
-    status: 'soon',
+    status: 'ready',
   },
 
   // ---------------------------------------------------------------- skill ---
@@ -483,7 +502,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [2, 10],
     emoji: '⚡',
     accent: 'amber',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'tap-battle',
@@ -501,7 +520,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [2, 10],
     emoji: '👍',
     accent: 'lime',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'memory-chain',
@@ -519,7 +538,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 15],
     emoji: '🧠',
     accent: 'cyan',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'hot-potato',
@@ -537,7 +556,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [5, 15],
     emoji: '🥔',
     accent: 'orange',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'steady-hand',
@@ -555,7 +574,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [3, 10],
     emoji: '🪡',
     accent: 'violet',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'quick-math',
@@ -573,7 +592,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [3, 10],
     emoji: '➗',
     accent: 'indigo',
-    status: 'soon',
+    status: 'ready',
   },
 
   // ------------------------------------------------------- room / social ---
@@ -593,7 +612,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 30],
     emoji: '🎤',
     accent: 'amber',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'impostor',
@@ -611,7 +630,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 25],
     emoji: '🕵️',
     accent: 'indigo',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'wavelength',
@@ -629,7 +648,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 30],
     emoji: '📡',
     accent: 'cyan',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'draw-and-guess',
@@ -647,7 +666,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 30],
     emoji: '🎨',
     accent: 'fuchsia',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'liar-liar',
@@ -665,7 +684,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 35],
     emoji: '🃏',
     accent: 'rose',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'rank-it',
@@ -683,7 +702,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 25],
     emoji: '🏅',
     accent: 'lime',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'who-in-the-room',
@@ -701,7 +720,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 25],
     emoji: '🗳️',
     accent: 'violet',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'trivia-night',
@@ -719,7 +738,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [15, 40],
     emoji: '❓',
     accent: 'amber',
-    status: 'soon',
+    status: 'ready',
   },
   {
     id: 'werewolf-express',
@@ -737,7 +756,7 @@ export const GAME_CATALOGUE: GameMeta[] = [
     minutes: [10, 25],
     emoji: '🐺',
     accent: 'orange',
-    status: 'soon',
+    status: 'ready',
   },
 ];
 

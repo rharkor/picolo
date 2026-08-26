@@ -1,0 +1,155 @@
+import type { LocalizedText } from '@piccolo/shared';
+import type { RoomCard } from '../kit.js';
+
+export interface PromptCard extends RoomCard {
+  text: LocalizedText;
+}
+
+export interface DilemmaCard extends RoomCard {
+  a: LocalizedText;
+  b: LocalizedText;
+}
+
+/**
+ * Room edition of Most Likely To. Deliberately different lines from the
+ * pass-the-phone deck: a group that plays both should not see the same forty
+ * cards twice.
+ */
+export const MOST_LIKELY_ROOM: PromptCard[] = [
+  { id: 'r1', adult: false, intensity: 'chill', text: { en: '…reply to a message three weeks late?', fr: '…répondre à un message trois semaines plus tard ?' } },
+  { id: 'r2', adult: false, intensity: 'chill', text: { en: '…own a boat they cannot afford?', fr: '…posséder un bateau qu’il ne peut pas payer ?' } },
+  { id: 'r3', adult: false, intensity: 'chill', text: { en: '…marry the first person who is nice to them?', fr: '…épouser la première personne gentille avec lui ?' } },
+  { id: 'r4', adult: false, intensity: 'chill', text: { en: '…become a conspiracy theorist?', fr: '…devenir complotiste ?' } },
+  { id: 'r5', adult: false, intensity: 'chill', text: { en: '…be recognised in another country?', fr: '…être reconnu dans un autre pays ?' } },
+  { id: 'r6', adult: false, intensity: 'chill', text: { en: '…win an argument with a machine?', fr: '…gagner une dispute contre une machine ?' } },
+  { id: 'r7', adult: false, intensity: 'chill', text: { en: '…run a marathon on a dare?', fr: '…courir un marathon sur un pari ?' } },
+  { id: 'r8', adult: false, intensity: 'chill', text: { en: '…keep a diary nobody knows about?', fr: '…tenir un journal que personne ne connaît ?' } },
+  { id: 'r9', adult: false, intensity: 'chill', text: { en: '…be late to their own wedding?', fr: '…arriver en retard à son propre mariage ?' } },
+  { id: 'r10', adult: false, intensity: 'chill', text: { en: '…adopt a stray animal tonight?', fr: '…adopter un animal errant ce soir ?' } },
+  { id: 'r11', adult: false, intensity: 'party', text: { en: '…lose an argument and never admit it?', fr: '…perdre une dispute sans jamais l’admettre ?' } },
+  { id: 'r12', adult: false, intensity: 'party', text: { en: '…get us all thrown out of somewhere nice?', fr: '…nous faire virer d’un endroit chic ?' } },
+  { id: 'r13', adult: false, intensity: 'party', text: { en: '…text the group at 4am?', fr: '…écrire au groupe à 4 h du matin ?' } },
+  { id: 'r14', adult: false, intensity: 'party', text: { en: '…claim they called it first?', fr: '…prétendre qu’il l’avait dit en premier ?' } },
+  { id: 'r15', adult: false, intensity: 'party', text: { en: '…start a business with no plan?', fr: '…lancer une boîte sans aucun plan ?' } },
+  { id: 'r16', adult: false, intensity: 'party', text: { en: '…get a haircut they regret this month?', fr: '…se faire une coupe qu’il regrettera ce mois-ci ?' } },
+  { id: 'r17', adult: false, intensity: 'party', text: { en: '…post a selfie from this exact table?', fr: '…poster un selfie depuis cette table ?' } },
+  { id: 'r18', adult: false, intensity: 'party', text: { en: '…leave without paying, by accident?', fr: '…partir sans payer, par accident ?' } },
+  { id: 'r19', adult: false, intensity: 'party', text: { en: '…forget a name mid-introduction?', fr: '…oublier un prénom en pleine présentation ?' } },
+  { id: 'r20', adult: false, intensity: 'party', text: { en: '…give a toast that goes on too long?', fr: '…faire un toast beaucoup trop long ?' } },
+  { id: 'r21', adult: false, intensity: 'party', text: { en: '…be the one holding everyone’s coat?', fr: '…finir avec les manteaux de tout le monde ?' } },
+  { id: 'r22', adult: false, intensity: 'party', text: { en: '…sing along to a song they do not know?', fr: '…chanter une chanson qu’il ne connaît pas ?' } },
+  { id: 'r23', adult: false, intensity: 'party', text: { en: '…take the group photo and be in none of them?', fr: '…prendre les photos de groupe et n’être sur aucune ?' } },
+  { id: 'r24', adult: false, intensity: 'party', text: { en: '…decide tonight is a big night, alone?', fr: '…décider tout seul que ce soir est une grosse soirée ?' } },
+  { id: 'r25', adult: false, intensity: 'party', text: { en: '…lose a bet and actually pay up?', fr: '…perdre un pari et vraiment payer ?' } },
+  { id: 'r26', adult: false, intensity: 'party', text: { en: '…get emotional about a film nobody else liked?', fr: '…s’émouvoir devant un film que personne d’autre n’a aimé ?' } },
+  { id: 'r27', adult: false, intensity: 'party', text: { en: '…organise a trip and cancel it?', fr: '…organiser un voyage puis l’annuler ?' } },
+  { id: 'r28', adult: false, intensity: 'party', text: { en: '…be the last to know the gossip?', fr: '…être le dernier au courant des ragots ?' } },
+  { id: 'r29', adult: false, intensity: 'wild', text: { en: '…be secretly dating someone here?', fr: '…sortir secrètement avec quelqu’un ici ?' } },
+  { id: 'r30', adult: false, intensity: 'wild', text: { en: '…read this group chat out loud in court?', fr: '…lire ce groupe de discussion à voix haute au tribunal ?' } },
+  { id: 'r31', adult: false, intensity: 'wild', text: { en: '…be hiding a whole other life?', fr: '…cacher une double vie entière ?' } },
+  { id: 'r32', adult: false, intensity: 'wild', text: { en: '…break a promise they made tonight?', fr: '…briser une promesse faite ce soir ?' } },
+  { id: 'r33', adult: false, intensity: 'wild', text: { en: '…tell one of us a hard truth we need?', fr: '…dire à l’un de nous une vérité dure mais nécessaire ?' } },
+  { id: 'r34', adult: false, intensity: 'wild', text: { en: '…still be angry about something from years ago?', fr: '…être encore en colère pour un truc vieux de plusieurs années ?' } },
+  { id: 'r35', adult: false, intensity: 'wild', text: { en: '…move away and not tell anyone?', fr: '…déménager sans le dire à personne ?' } },
+  { id: 'r36', adult: false, intensity: 'chill', text: { en: '…be the first to have children?', fr: '…avoir des enfants en premier ?' } },
+  { id: 'r37', adult: false, intensity: 'chill', text: { en: '…still be friends with everyone here in ten years?', fr: '…être encore ami avec tout le monde ici dans dix ans ?' } },
+  { id: 'r38', adult: false, intensity: 'party', text: { en: '…lie about how good they are at something?', fr: '…mentir sur son niveau dans un domaine ?' } },
+  { id: 'r39', adult: false, intensity: 'party', text: { en: '…be caught talking to themselves?', fr: '…se faire surprendre en train de se parler tout seul ?' } },
+  { id: 'r40', adult: false, intensity: 'party', text: { en: '…take a work call during a party?', fr: '…prendre un appel du boulot en pleine soirée ?' } },
+
+  { id: 'rs1', adult: true, intensity: 'wild', text: { en: '…have a secret account nobody knows about?', fr: '…avoir un compte secret que personne ne connaît ?' } },
+  { id: 'rs2', adult: true, intensity: 'wild', text: { en: '…kiss a stranger before the end of the night?', fr: '…embrasser un inconnu avant la fin de la soirée ?' } },
+  { id: 'rs3', adult: true, intensity: 'wild', text: { en: '…have a story that would end a friendship?', fr: '…avoir une histoire qui briserait une amitié ?' } },
+  { id: 'rs4', adult: true, intensity: 'wild', text: { en: '…say yes to anything tonight?', fr: '…dire oui à tout ce soir ?' } },
+  { id: 'rs5', adult: true, intensity: 'wild', text: { en: '…have flirted with someone in this room this week?', fr: '…avoir dragué quelqu’un dans cette pièce cette semaine ?' } },
+];
+
+/** Superlatives for Who In The Room — full questions, answered by voting. */
+export const SUPERLATIVES: PromptCard[] = [
+  { id: 's1', adult: false, intensity: 'chill', text: { en: 'Who would you trust with your house keys?', fr: 'À qui confierais-tu les clés de chez toi ?' } },
+  { id: 's2', adult: false, intensity: 'chill', text: { en: 'Who gives the best advice?', fr: 'Qui donne les meilleurs conseils ?' } },
+  { id: 's3', adult: false, intensity: 'chill', text: { en: 'Who has the best laugh?', fr: 'Qui a le meilleur rire ?' } },
+  { id: 's4', adult: false, intensity: 'chill', text: { en: 'Who would survive a week with no phone?', fr: 'Qui survivrait une semaine sans téléphone ?' } },
+  { id: 's5', adult: false, intensity: 'chill', text: { en: 'Who is the best cook?', fr: 'Qui cuisine le mieux ?' } },
+  { id: 's6', adult: false, intensity: 'chill', text: { en: 'Who is secretly the smartest?', fr: 'Qui est secrètement le plus intelligent ?' } },
+  { id: 's7', adult: false, intensity: 'chill', text: { en: 'Who would make the best flatmate?', fr: 'Qui ferait le meilleur colocataire ?' } },
+  { id: 's8', adult: false, intensity: 'chill', text: { en: 'Who has the best taste in films?', fr: 'Qui a les meilleurs goûts en films ?' } },
+  { id: 's9', adult: false, intensity: 'chill', text: { en: 'Who would you want as a travel partner?', fr: 'Avec qui voudrais-tu voyager ?' } },
+  { id: 's10', adult: false, intensity: 'chill', text: { en: 'Who is the kindest person here?', fr: 'Qui est la personne la plus gentille ici ?' } },
+  { id: 's11', adult: false, intensity: 'party', text: { en: 'Who is the messiest drunk?', fr: 'Qui est le plus en vrac quand il boit ?' } },
+  { id: 's12', adult: false, intensity: 'party', text: { en: 'Who talks the most and listens the least?', fr: 'Qui parle le plus et écoute le moins ?' } },
+  { id: 's13', adult: false, intensity: 'party', text: { en: 'Who is the worst at keeping a secret?', fr: 'Qui garde le plus mal un secret ?' } },
+  { id: 's14', adult: false, intensity: 'party', text: { en: 'Who checks their reflection the most?', fr: 'Qui se regarde le plus dans le reflet ?' } },
+  { id: 's15', adult: false, intensity: 'party', text: { en: 'Who is the biggest drama queen?', fr: 'Qui est le plus dramatique ?' } },
+  { id: 's16', adult: false, intensity: 'party', text: { en: 'Who would fold first under questioning?', fr: 'Qui craquerait le premier sous interrogatoire ?' } },
+  { id: 's17', adult: false, intensity: 'party', text: { en: 'Who spends the most money on nonsense?', fr: 'Qui dépense le plus dans des bêtises ?' } },
+  { id: 's18', adult: false, intensity: 'party', text: { en: 'Who is always cold?', fr: 'Qui a toujours froid ?' } },
+  { id: 's19', adult: false, intensity: 'party', text: { en: 'Who would be the worst boss?', fr: 'Qui serait le pire patron ?' } },
+  { id: 's20', adult: false, intensity: 'party', text: { en: 'Who takes the longest to get ready?', fr: 'Qui met le plus de temps à se préparer ?' } },
+  { id: 's21', adult: false, intensity: 'party', text: { en: 'Who is most likely to cry tonight?', fr: 'Qui va probablement pleurer ce soir ?' } },
+  { id: 's22', adult: false, intensity: 'party', text: { en: 'Who is the pickiest eater?', fr: 'Qui est le plus difficile à table ?' } },
+  { id: 's23', adult: false, intensity: 'party', text: { en: 'Who has the worst sense of direction?', fr: 'Qui a le pire sens de l’orientation ?' } },
+  { id: 's24', adult: false, intensity: 'party', text: { en: 'Who would be famous for the wrong reason?', fr: 'Qui deviendrait célèbre pour la mauvaise raison ?' } },
+  { id: 's25', adult: false, intensity: 'party', text: { en: 'Who gets away with everything?', fr: 'Qui s’en sort toujours ?' } },
+  { id: 's26', adult: false, intensity: 'party', text: { en: 'Who is the most competitive?', fr: 'Qui est le plus compétitif ?' } },
+  { id: 's27', adult: false, intensity: 'party', text: { en: 'Who has the strangest hobby?', fr: 'Qui a le hobby le plus étrange ?' } },
+  { id: 's28', adult: false, intensity: 'party', text: { en: 'Who would be voted off the island first?', fr: 'Qui serait éliminé de l’île en premier ?' } },
+  { id: 's29', adult: false, intensity: 'wild', text: { en: 'Who is hiding the most right now?', fr: 'Qui cache le plus de choses là maintenant ?' } },
+  { id: 's30', adult: false, intensity: 'wild', text: { en: 'Who has the most to lose tonight?', fr: 'Qui a le plus à perdre ce soir ?' } },
+  { id: 's31', adult: false, intensity: 'wild', text: { en: 'Who is the least honest in this room?', fr: 'Qui est le moins honnête de cette pièce ?' } },
+  { id: 's32', adult: false, intensity: 'wild', text: { en: 'Who would sell the rest of us out?', fr: 'Qui nous vendrait tous ?' } },
+  { id: 's33', adult: false, intensity: 'wild', text: { en: 'Who is in love with someone here?', fr: 'Qui est amoureux de quelqu’un ici ?' } },
+  { id: 's34', adult: false, intensity: 'wild', text: { en: 'Who has changed the most this year?', fr: 'Qui a le plus changé cette année ?' } },
+  { id: 's35', adult: false, intensity: 'wild', text: { en: 'Who needs to hear something honest tonight?', fr: 'Qui a besoin d’entendre une vérité ce soir ?' } },
+  { id: 's36', adult: false, intensity: 'wild', text: { en: 'Who has the best story they have never told us?', fr: 'Qui a la meilleure histoire jamais racontée ?' } },
+  { id: 's37', adult: false, intensity: 'chill', text: { en: 'Who will be the most successful?', fr: 'Qui réussira le mieux ?' } },
+  { id: 's38', adult: false, intensity: 'chill', text: { en: 'Who is the most underrated here?', fr: 'Qui est le plus sous-estimé ici ?' } },
+  { id: 's39', adult: false, intensity: 'party', text: { en: 'Who is the funniest without trying?', fr: 'Qui est le plus drôle sans le vouloir ?' } },
+  { id: 's40', adult: false, intensity: 'party', text: { en: 'Who is the biggest hypocrite?', fr: 'Qui est le plus grand hypocrite ?' } },
+
+  { id: 'ss1', adult: true, intensity: 'wild', text: { en: 'Who has the wildest history?', fr: 'Qui a le passé le plus chaud ?' } },
+  { id: 'ss2', adult: true, intensity: 'wild', text: { en: 'Who is the best flirt?', fr: 'Qui drague le mieux ?' } },
+  { id: 'ss3', adult: true, intensity: 'wild', text: { en: 'Who would you least want to see your search history?', fr: 'Qui voudrais-tu le moins voir ton historique ?' } },
+  { id: 'ss4', adult: true, intensity: 'wild', text: { en: 'Who has the most convincing poker face in bed?', fr: 'Qui a le plus grand talent pour cacher ce qu’il pense au lit ?' } },
+  { id: 'ss5', adult: true, intensity: 'wild', text: { en: 'Who would say yes to a stranger tonight?', fr: 'Qui dirait oui à un inconnu ce soir ?' } },
+];
+
+/** Room edition of Would You Rather. Again, fresh lines. */
+export const DILEMMAS_ROOM: DilemmaCard[] = [
+  { id: 'd1', adult: false, intensity: 'chill', a: { en: 'Always know the truth', fr: 'Toujours connaître la vérité' }, b: { en: 'Always be believed', fr: 'Toujours être cru' } },
+  { id: 'd2', adult: false, intensity: 'chill', a: { en: 'Live one year abroad, alone', fr: 'Vivre un an à l’étranger, seul' }, b: { en: 'Live ten years here, with everyone', fr: 'Vivre dix ans ici, avec tout le monde' } },
+  { id: 'd3', adult: false, intensity: 'chill', a: { en: 'Never be bored again', fr: 'Ne plus jamais t’ennuyer' }, b: { en: 'Never be tired again', fr: 'Ne plus jamais être fatigué' } },
+  { id: 'd4', adult: false, intensity: 'chill', a: { en: 'Have a perfect memory', fr: 'Avoir une mémoire parfaite' }, b: { en: 'Be able to forget anything on demand', fr: 'Pouvoir oublier ce que tu veux' } },
+  { id: 'd5', adult: false, intensity: 'chill', a: { en: 'Be the best at something useless', fr: 'Être le meilleur à un truc inutile' }, b: { en: 'Be average at everything useful', fr: 'Être moyen dans tout ce qui est utile' } },
+  { id: 'd6', adult: false, intensity: 'chill', a: { en: 'Always have to tell the whole story', fr: 'Toujours devoir raconter toute l’histoire' }, b: { en: 'Only ever be able to answer yes or no', fr: 'Ne pouvoir répondre que par oui ou non' } },
+  { id: 'd7', adult: false, intensity: 'chill', a: { en: 'Free flights forever', fr: 'Des vols gratuits à vie' }, b: { en: 'Free food forever', fr: 'De la nourriture gratuite à vie' } },
+  { id: 'd8', adult: false, intensity: 'chill', a: { en: 'Speak to animals', fr: 'Parler aux animaux' }, b: { en: 'Speak every human language', fr: 'Parler toutes les langues humaines' } },
+  { id: 'd9', adult: false, intensity: 'party', a: { en: 'Have this whole night filmed', fr: 'Que toute cette soirée soit filmée' }, b: { en: 'Remember none of it', fr: 'N’en garder aucun souvenir' } },
+  { id: 'd10', adult: false, intensity: 'party', a: { en: 'Be the loudest person in every room', fr: 'Être le plus bruyant de chaque pièce' }, b: { en: 'Never be noticed in any room', fr: 'Ne jamais être remarqué' } },
+  { id: 'd11', adult: false, intensity: 'party', a: { en: 'Only ever dance, never talk', fr: 'Ne pouvoir que danser, jamais parler' }, b: { en: 'Only ever talk, never dance', fr: 'Ne pouvoir que parler, jamais danser' } },
+  { id: 'd12', adult: false, intensity: 'party', a: { en: 'Let this group name your child', fr: 'Laisser ce groupe nommer ton enfant' }, b: { en: 'Let this group choose your job', fr: 'Laisser ce groupe choisir ton métier' } },
+  { id: 'd13', adult: false, intensity: 'party', a: { en: 'Pay for every round tonight', fr: 'Payer toutes les tournées ce soir' }, b: { en: 'Drink whatever the table orders you', fr: 'Boire ce que la table te commande' } },
+  { id: 'd14', adult: false, intensity: 'party', a: { en: 'Never drink again', fr: 'Ne plus jamais boire' }, b: { en: 'Never sleep in past 7am again', fr: 'Ne plus jamais dormir après 7 h' } },
+  { id: 'd15', adult: false, intensity: 'party', a: { en: 'Have your notes app read out', fr: 'Que ton appli de notes soit lue à voix haute' }, b: { en: 'Have your voice memos played', fr: 'Que tes mémos vocaux soient diffusés' } },
+  { id: 'd16', adult: false, intensity: 'party', a: { en: 'Wear a costume to every event for a year', fr: 'Porter un costume à chaque événement pendant un an' }, b: { en: 'Never dress up again', fr: 'Ne plus jamais te déguiser' } },
+  { id: 'd17', adult: false, intensity: 'party', a: { en: 'Get one honest opinion from everyone here', fr: 'Recevoir un avis honnête de chacun ici' }, b: { en: 'Give one honest opinion to everyone here', fr: 'Donner un avis honnête à chacun ici' } },
+  { id: 'd18', adult: false, intensity: 'party', a: { en: 'Sing at every birthday, alone', fr: 'Chanter seul à chaque anniversaire' }, b: { en: 'Give a speech at every one', fr: 'Faire un discours à chacun' } },
+  { id: 'd19', adult: false, intensity: 'wild', a: { en: 'Know what everyone here thinks of you', fr: 'Savoir ce que chacun ici pense de toi' }, b: { en: 'Never wonder again', fr: 'Ne plus jamais te poser la question' } },
+  { id: 'd20', adult: false, intensity: 'wild', a: { en: 'Lose one year of memories', fr: 'Perdre une année de souvenirs' }, b: { en: 'Lose one friendship permanently', fr: 'Perdre une amitié définitivement' } },
+  { id: 'd21', adult: false, intensity: 'wild', a: { en: 'Have your worst moment played on the big screen', fr: 'Que ton pire moment passe sur le grand écran' }, b: { en: 'Have somebody else describe it', fr: 'Que quelqu’un d’autre le raconte' } },
+  { id: 'd22', adult: false, intensity: 'wild', a: { en: 'Be forgiven for everything', fr: 'Être pardonné pour tout' }, b: { en: 'Never need to be', fr: 'Ne jamais avoir besoin de l’être' } },
+  { id: 'd23', adult: false, intensity: 'wild', a: { en: 'Read one person’s messages about you', fr: 'Lire les messages d’une personne à ton sujet' }, b: { en: 'Have them read yours about them', fr: 'Qu’elle lise les tiens à son sujet' } },
+  { id: 'd24', adult: false, intensity: 'wild', a: { en: 'Start every conversation with a confession', fr: 'Commencer chaque conversation par une confession' }, b: { en: 'End every one with a lie', fr: 'Terminer chacune par un mensonge' } },
+  { id: 'd25', adult: false, intensity: 'chill', a: { en: 'Always have the last word', fr: 'Toujours avoir le dernier mot' }, b: { en: 'Always be right and never say so', fr: 'Toujours avoir raison sans le dire' } },
+  { id: 'd26', adult: false, intensity: 'chill', a: { en: 'Work with people you love on something dull', fr: 'Travailler avec des gens que tu aimes sur un truc ennuyeux' }, b: { en: 'Work alone on something brilliant', fr: 'Travailler seul sur un truc génial' } },
+  { id: 'd27', adult: false, intensity: 'party', a: { en: 'Have the table pick your outfit for a month', fr: 'Que la table choisisse tes tenues pendant un mois' }, b: { en: 'Have it pick your playlist for a year', fr: 'Qu’elle choisisse ta playlist pendant un an' } },
+  { id: 'd28', adult: false, intensity: 'party', a: { en: 'Be the designated driver every time', fr: 'Être le chauffeur désigné à chaque fois' }, b: { en: 'Never be allowed to drive again', fr: 'Ne plus jamais avoir le droit de conduire' } },
+  { id: 'd29', adult: false, intensity: 'wild', a: { en: 'Say what you really think for one hour', fr: 'Dire ce que tu penses vraiment pendant une heure' }, b: { en: 'Hear what others really think for one hour', fr: 'Entendre ce que les autres pensent vraiment pendant une heure' } },
+  { id: 'd30', adult: false, intensity: 'wild', a: { en: 'Fix one regret', fr: 'Réparer un regret' }, b: { en: 'Guarantee no new ones', fr: 'Garantir aucun nouveau regret' } },
+
+  { id: 'ds1', adult: true, intensity: 'wild', a: { en: 'Have every date you have been on rate you', fr: 'Que tous tes dates te notent' }, b: { en: 'Rate every one of them out loud', fr: 'Les noter tous à voix haute' } },
+  { id: 'ds2', adult: true, intensity: 'wild', a: { en: 'Only ever be someone’s first choice', fr: 'N’être jamais que le premier choix' }, b: { en: 'Only ever be their best', fr: 'N’être jamais que leur meilleur' } },
+  { id: 'ds3', adult: true, intensity: 'wild', a: { en: 'Have your type announced to the room', fr: 'Que ton type soit annoncé à la salle' }, b: { en: 'Have the room guess it', fr: 'Que la salle le devine' } },
+  { id: 'ds4', adult: true, intensity: 'wild', a: { en: 'Never flirt again', fr: 'Ne plus jamais draguer' }, b: { en: 'Only ever flirt, never follow through', fr: 'Ne faire que draguer, sans jamais conclure' } },
+  { id: 'ds5', adult: true, intensity: 'wild', a: { en: 'Tell your parents everything', fr: 'Tout raconter à tes parents' }, b: { en: 'Tell this table everything', fr: 'Tout raconter à cette table' } },
+];
