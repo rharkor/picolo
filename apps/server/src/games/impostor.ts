@@ -49,12 +49,25 @@ function driver(ctx: RoomGameContext, actor: string): boolean {
   return ctx.players.find((p) => p.id === actor)?.isHost ?? false;
 }
 
+/**
+ * Mr White has nothing to say before he has heard a real clue, so the lineup is
+ * rotated until somebody who actually holds a word leads off. A rotation rather
+ * than a reshuffle: the running order the table has already seen stays intact,
+ * and it keeps working in later rounds once the original leader is voted out.
+ */
+function clueLineup(state: State): string[] {
+  const list = state.clueOrder.filter((id) => !state.out.includes(id));
+  const lead = list.findIndex((id) => (state.roles[id] ?? 'civilian') !== 'white');
+  if (lead <= 0) return list;
+  return [...list.slice(lead), ...list.slice(0, lead)];
+}
+
 function publish(ctx: RoomGameContext, state: State): void {
   const pub: ImpostorPublic = {
     kind: 'impostor',
     round: state.round,
     phase: state.phase,
-    clueOrder: state.clueOrder.filter((id) => !state.out.includes(id)),
+    clueOrder: clueLineup(state),
     ready: state.ready,
     voted: Object.keys(state.votes),
     out: state.out,

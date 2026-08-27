@@ -9,7 +9,7 @@ import { usePile } from '@/games/_kit/pile';
 import { GameFrame, NeedPlayers, PlayerPicker, Standings } from '@/games/_kit/ui';
 import { cn } from '@/lib/cn';
 import { haptic } from '@/lib/haptics';
-import { shuffle } from '@/lib/random';
+import { pick, shuffle } from '@/lib/random';
 import type { PartyPlayer } from '@/store/party';
 import { WORD_PAIRS } from './deck';
 
@@ -45,6 +45,7 @@ export default function MrWhite({ players, adult, onExit }: LocalGameProps) {
   const [roles, setRoles] = useState<Record<string, Role>>({});
   const [flipped, setFlipped] = useState(false);
   const [order, setOrder] = useState<PartyPlayer[]>([]);
+  const [starterId, setStarterId] = useState<string | null>(null);
   const [seat, setSeat] = useState(0);
   const [outIds, setOutIds] = useState<string[]>([]);
   const [vote, setVote] = useState<string | null>(null);
@@ -76,6 +77,9 @@ export default function MrWhite({ players, adult, onExit }: LocalGameProps) {
     // Deal in party order, not in the shuffled role order: handing the phone to
     // your actual neighbour is the only ergonomics that matters here.
     setOrder([...players]);
+    // Mr White has nothing to say until he has heard a real clue, so the opening
+    // word always belongs to somebody who actually holds a word.
+    setStarterId(pick(players.filter((p) => assigned[p.id] !== 'white'))?.id ?? null);
     setSeat(0);
     setOutIds([]);
     setVote(null);
@@ -181,6 +185,7 @@ export default function MrWhite({ players, adult, onExit }: LocalGameProps) {
 
   const maxImpostors = Math.max(1, Math.floor((players.length - 1) / 2));
   const votedPlayer = players.find((p) => p.id === vote);
+  const starter = players.find((p) => p.id === starterId);
   const lastOutRole = outIds.length > 0 ? roles[outIds[outIds.length - 1] ?? ''] : undefined;
   const lastOutPlayer = players.find((p) => p.id === outIds[outIds.length - 1]);
 
@@ -377,7 +382,7 @@ export default function MrWhite({ players, adult, onExit }: LocalGameProps) {
             {t('games.mr-white.describeTitle')}
           </p>
           <p className="max-w-sm text-muted text-balance">
-            {t('games.mr-white.describeNote', { name: order[0]?.name ?? '' })}
+            {t('games.mr-white.describeNote', { name: starter?.name ?? order[0]?.name ?? '' })}
           </p>
         </div>
       )}
