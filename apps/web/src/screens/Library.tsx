@@ -1,17 +1,24 @@
 import { motion } from 'motion/react';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { GAME_CATALOGUE, type GameCategory, type PlayMode } from '@piccolo/shared';
+import { GAME_CATALOGUE, type GameCategory, type GameMeta, type PlayMode } from '@piccolo/shared';
+import { Button } from '@/components/Button';
 import { GameCard } from '@/components/GameCard';
 import { Screen } from '@/components/Screen';
 import { TopBar } from '@/components/TopBar';
 import { useI18n } from '@/i18n';
 import { cn } from '@/lib/cn';
 import { haptic } from '@/lib/haptics';
+import { pick } from '@/lib/random';
 import { hasLocalGame } from '@/games/registry';
 import { useSettings } from '@/store/settings';
 
 const CATEGORIES: GameCategory[] = ['cards', 'party', 'social', 'skill', 'quiz', 'spicy'];
+
+/** Shipped, and — for pass-the-phone — actually wired up to a local screen. */
+function isPlayable(game: GameMeta): boolean {
+  return game.status === 'ready' && (game.modes.includes('pass') ? hasLocalGame(game.id) : true);
+}
 
 function FilterPill({
   active,
@@ -64,12 +71,23 @@ export function Library() {
       return true;
     }).sort((a, b) => {
       // Playable first, then alphabetically in the active language.
-      const aReady = a.status === 'ready' && (a.modes.includes('pass') ? hasLocalGame(a.id) : true);
-      const bReady = b.status === 'ready' && (b.modes.includes('pass') ? hasLocalGame(b.id) : true);
+      const aReady = isPlayable(a);
+      const bReady = isPlayable(b);
       if (aReady !== bReady) return aReady ? -1 : 1;
       return loc(a.title).localeCompare(loc(b.title));
     });
   }, [adultUnlocked, category, loc, mode, query]);
+
+  // Shuffle only ever lands on something you can start, and only within what the
+  // filters are already showing — otherwise it feels like it ignored you.
+  const shufflePool = useMemo(() => games.filter(isPlayable), [games]);
+
+  const surprise = useCallback(() => {
+    const game = pick(shufflePool);
+    if (!game) return;
+    haptic('select');
+    navigate(`/g/${game.id}`);
+  }, [navigate, shufflePool]);
 
   const readyCount = GAME_CATALOGUE.filter((g) => g.status === 'ready').length;
   const soonCount = GAME_CATALOGUE.length - readyCount;
@@ -95,13 +113,27 @@ export function Library() {
         }
       />
 
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={t('library.search')}
-        className="glass mb-3 w-full rounded-2xl px-4 py-3 text-base outline-none placeholder:text-muted/70 focus:border-fuchsia/50"
-      />
+      <div className="mb-3 flex gap-2">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t('library.search')}
+          className="glass min-w-0 flex-1 rounded-2xl px-4 py-3 text-base outline-none placeholder:text-muted/70 focus:border-fuchsia/50"
+        />
+        <Button
+          variant="surface"
+          size="md"
+          className="h-auto shrink-0 self-stretch px-4"
+          disabled={shufflePool.length === 0}
+          onClick={surprise}
+          aria-label={t('library.shuffle')}
+          title={t('library.shuffleHint')}
+        >
+          <span aria-hidden>🎲</span>
+          <span className="hidden sm:inline">{t('library.shuffle')}</span>
+        </Button>
+      </div>
 
       <div className="no-scrollbar -mx-5 mb-2 flex gap-2 overflow-x-auto px-5 pb-2">
         <FilterPill active={!mode} onClick={() => setParam('mode', null)}>
