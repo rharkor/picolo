@@ -48,6 +48,8 @@ export const fr: Dictionary = {
     all: 'Tous',
     empty: 'Rien ne correspond.',
     clear: 'Effacer les filtres',
+    shuffle: 'Au hasard',
+    shuffleHint: 'Tire un jeu au hasard parmi ceux affichés',
     adultLocked: '{count} jeux sont cachés derrière l’interrupteur 18+.',
     unlockAdult: 'Débloquer dans les réglages',
   },

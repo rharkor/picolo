@@ -45,6 +45,8 @@ export const en = {
     all: 'All',
     empty: 'Nothing matches that.',
     clear: 'Clear filters',
+    shuffle: 'Surprise me',
+    shuffleHint: 'Pick a random game from what is showing',
     adultLocked: '{count} games are hidden behind the 18+ switch.',
     unlockAdult: 'Unlock in settings',
   },
