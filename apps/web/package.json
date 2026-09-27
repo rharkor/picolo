@@ -13,7 +13,7 @@
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource-variable/space-grotesk": "^5.2.5",
     "@piccolo/shared": "*",
-    "motion": "^12.9.2",
+    "motion": "^13.0.0",
     "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
