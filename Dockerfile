@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ---------------------------------------------------------------- deps ------
-FROM node:24-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY packages/shared/package.json packages/shared/
@@ -11,7 +11,7 @@ RUN --mount=type=cache,target=/root/.npm \
     if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 # --------------------------------------------------------------- build ------
-FROM node:24-alpine AS build
+FROM node:26-alpine AS build
 WORKDIR /app
 # Deliberately NOT NODE_ENV=production: that would make Vite inline React's
 # development build and skip its production optimisations.
@@ -22,7 +22,7 @@ COPY . .
 RUN npm run build
 
 # ------------------------------------------------------- production deps ----
-FROM node:24-alpine AS prod-deps
+FROM node:26-alpine AS prod-deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY packages/shared/package.json packages/shared/
@@ -33,7 +33,7 @@ RUN --mount=type=cache,target=/root/.npm \
     else npm install --omit=dev --workspace @piccolo/server --include-workspace-root; fi
 
 # ------------------------------------------------------------- runtime ------
-FROM node:24-alpine AS runtime
+FROM node:26-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production \
     PORT=8080 \
